@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:passport/QR/scan_qr.dart';
 import 'package:passport/widgets/contact_list.dart';
 import 'package:barcode_scan_fix/barcode_scan.dart';
@@ -15,8 +16,27 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+
+  Box<Contact> contacts = Hive.box("contacts");
+
+  void addContact() async {
+    String codeScanner = await BarcodeScanner.scan();    //barcode scanner
+    List<String> contactInfo = codeScanner.split("~");
+    Contact newContact = Contact(
+        name: contactInfo.elementAt(0),
+        mobile: contactInfo.elementAt(1),
+        email: contactInfo.elementAt(2)
+    );
+    contacts.add(newContact);
+    setState(() {
+      print("FUCK U");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool reload = false;
+
     return Scaffold(
       appBar: AppBar(
         title: Container(
@@ -68,17 +88,14 @@ class _ContactPageState extends State<ContactPage> {
               label: "scan"
           )
         ],
-        onTap: (int index) async {
+        onTap: (int index) {
           if (index == 0) {
             Navigator.push(
                 context,
                 MaterialPageRoute(builder: (Context) => GenerateQR())
             );
           } else {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (Context) => ScanQR())
-            );
+            addContact();
           }
         },
       ),
