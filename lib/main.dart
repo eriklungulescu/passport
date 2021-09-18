@@ -11,19 +11,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ContactAdapter());
-  Box box = await Hive.openBox<Contact>("Contacts");
+  await Hive.openBox<Contact>("Contacts");
   await Hive.openBox("userdata");
-  box.add(new Contact(
-      name: "jennifer",
-      mobile: "519-580-8171",
-      email: "jen@gmail.com")
-  );
-  box.add(new Contact(
-      name: "adam",
-      mobile: "919",
-      email: "adm@email.com")
-  );
-
   runApp(const MyApp());
 }
 
@@ -45,7 +34,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Passport',
-      home: LoginPage(),
+      home: startUp(),
+      theme: ThemeData(
+        fontFamily: "Roboto"
+      ),
       routes: {
         "login" : (_) => LoginPage(),
         "contacts" : (_) => ContactPage(),

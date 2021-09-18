@@ -41,19 +41,23 @@ class _State extends State<LoginPage> {
               children: <Widget>[
                 Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(15,20,15,50),
+                    padding: EdgeInsets.fromLTRB(15,20,15,40),
                     child: const Text(
                       'Passport',
                       style: TextStyle(
                           color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 45),
+                          fontFamily: "Aquire",
+                          fontSize: 45,
+                      ),
                     )
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
                     controller: nameController,
+                    style: TextStyle(
+                      fontFamily: "LemonMilk"
+                    ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Name',
@@ -64,6 +68,9 @@ class _State extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: TextField(
                     controller: mobileController,
+                    style: TextStyle(
+                        fontFamily: "LemonMilk"
+                    ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Phone Number',
@@ -74,6 +81,9 @@ class _State extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
                   child: TextField(
                     controller: emailController,
+                    style: TextStyle(
+                        fontFamily: "LemonMilk"
+                    ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
@@ -83,7 +93,7 @@ class _State extends State<LoginPage> {
                 Container(
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                     child: ElevatedButton(
-                      child: Icon(Icons.check, size: 50),
+                      child: Icon(Icons.check_rounded, size: 50),
                       onPressed: () {
                         storeUserData();
                         if (nameController.text == "" || mobileController.text == "" || emailController.text == "" ) {
@@ -96,6 +106,7 @@ class _State extends State<LoginPage> {
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.green,
+                        padding: EdgeInsets.all(10),
                         shape: CircleBorder()
                       ),
                     )
