@@ -4,6 +4,7 @@ import 'package:passport/login_page.dart';
 import 'package:passport/widgets/contact_list.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:passport/QR/qr_code.dart';
 import 'db/contact.dart';
 
 
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
 
   Widget startUp() {
     Box userData = Hive.box("userdata");
-    Contact user = userData.get("user");
-    if (userData.get("loggedin")) {
+    // Contact user = userData.get("user");
+    if (userData.get("user") != Null) {
       return ContactPage();
     } else {
       return LoginPage();
