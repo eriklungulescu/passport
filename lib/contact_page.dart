@@ -28,15 +28,11 @@ class _ContactPageState extends State<ContactPage> {
         email: contactInfo.elementAt(2)
     );
     contacts.add(newContact);
-    setState(() {
-      print("FUCK U");
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    bool reload = false;
-
     return Scaffold(
       appBar: AppBar(
         title: Container(

@@ -11,16 +11,9 @@ class ContactList extends StatefulWidget {
 
 class _ContactListState extends State<ContactList> {
   Box<Contact> box = Hive.box<Contact>("contacts");
-  var uuid = Uuid();
-  // String generateRandom() {
-  //   S
-  // }
 
   void deleteContact(int index) {
     setState(() {
-      print(index);
-      Contact? contact = box.getAt(index);
-      print(contact!.name);
       box.deleteAt(index);
     });
   }
@@ -34,11 +27,12 @@ class _ContactListState extends State<ContactList> {
             shrinkWrap: true,
             itemCount: box.length,
             itemBuilder: (BuildContext context, int index) {
-              Contact? contact = box.getAt(index);
-              if (contact != null) {
-                return ContactWidget(contact, index, deleteContact);
-              }
-              throw KeyEventResult.ignored;
+              Contact contact = Contact(
+                  name: box.getAt(index)!.name,
+                  mobile: box.getAt(index)!.mobile,
+                  email:  box.getAt(index)!.email,
+              );
+              return ContactWidget(contact, index, deleteContact);
               },
           )
       );
