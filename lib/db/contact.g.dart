@@ -20,19 +20,25 @@ class ContactAdapter extends TypeAdapter<Contact> {
       name: fields[0] as String,
       email: fields[1] as String,
       mobile: fields[2] as String,
+      linkedin: fields[3] as String,
+      facebook: fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Contact obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.email)
       ..writeByte(2)
-      ..write(obj.mobile);
+      ..write(obj.mobile)
+      ..writeByte(3)
+      ..write(obj.linkedin)
+      ..writeByte(4)
+      ..write(obj.facebook);
   }
 
   @override

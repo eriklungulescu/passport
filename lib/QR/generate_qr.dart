@@ -15,7 +15,8 @@ class _GenerateQRState extends State<GenerateQR> {
   @override
   Widget build(BuildContext context) {
     Contact contact = userData.get("user");
-    String qrData = contact.name + "~" + contact.mobile + "~" + contact.email;
+    String qrData = contact.name + "~" + contact.mobile + "~" + contact.email
+        + "~" + contact.linkedin + "~" + contact.facebook;
     return Scaffold(
       //Appbar having title
       appBar: AppBar(

@@ -31,6 +31,8 @@ class _ContactListState extends State<ContactList> {
                   name: box.getAt(index)!.name,
                   mobile: box.getAt(index)!.mobile,
                   email:  box.getAt(index)!.email,
+                  linkedin:  box.getAt(index)!.linkedin,
+                  facebook:  box.getAt(index)!.facebook
               );
               return ContactWidget(contact, index, deleteContact);
               },

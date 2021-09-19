@@ -13,6 +13,12 @@ class Contact{
   @HiveField(2)
   String mobile;
 
+  @HiveField(3)
+  String linkedin;
 
-  Contact({required this.name,required this.email,required this.mobile});
+  @HiveField(4)
+  String facebook;
+
+
+  Contact({required this.name,required this.email,required this.mobile,required this.linkedin,required this.facebook});
 }

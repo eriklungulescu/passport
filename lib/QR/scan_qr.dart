@@ -11,7 +11,9 @@ class ScanQR {
     Contact newContact = Contact(
         name: contactInfo.elementAt(0),
         mobile: contactInfo.elementAt(1),
-        email: contactInfo.elementAt(2)
+        email: contactInfo.elementAt(2),
+        linkedin: contactInfo.elementAt(3),
+        facebook: contactInfo.elementAt(4)
     );
     contacts.add(newContact);
   }

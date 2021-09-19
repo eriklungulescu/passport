@@ -14,12 +14,10 @@ class _State extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-
-
+  TextEditingController linkedinController = TextEditingController();
+  TextEditingController facebookController = TextEditingController();
 
   Box userData = Hive.box("userdata");
-
-
 
   void storeUserData() {
     userData.put("loggedin", true);
@@ -30,7 +28,9 @@ class _State extends State<LoginPage> {
     Contact user = new Contact(
       name: nameController.text,
       mobile: mobileController.text,
-      email: emailController.text
+      email: emailController.text,
+      linkedin: emailController.text,
+      facebook: emailController.text
 
     );
     userData.put("user", user);
@@ -59,6 +59,20 @@ class _State extends State<LoginPage> {
     } else {
       email_place = contact.name;
       emailController.text = contact.email;
+    }
+    String linkedin_place;
+    if (contact.linkedin == null){
+      linkedin_place = 'Linkedin Profile';
+    } else {
+      linkedin_place = contact.linkedin;
+      linkedinController.text = contact.linkedin;
+    }
+    String facebook_place;
+    if (contact.facebook == null){
+      facebook_place = 'Facebook Profile';
+    } else {
+      facebook_place = contact.facebook;
+      facebookController.text = contact.facebook;
     }
 
     return Scaffold(
@@ -120,6 +134,32 @@ class _State extends State<LoginPage> {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
+                  child: TextField(
+                    controller: linkedinController,
+                    style: TextStyle(
+                        fontFamily: "LemonMilk"
+                    ),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: linkedin_place,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
+                  child: TextField(
+                    controller: facebookController,
+                    style: TextStyle(
+                        fontFamily: "LemonMilk"
+                    ),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: facebook_place,
+                    ),
+                  ),
+                ),
+                Container(
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,7 +182,11 @@ class _State extends State<LoginPage> {
                           child: Icon(Icons.check_rounded, size: 50),
                           onPressed: () {
                             storeUserData();
-                            if (nameController.text == "" || mobileController.text == "" || emailController.text == "" ) {
+                            if (nameController.text == ""
+                                || mobileController.text == ""
+                                || emailController.text == ""
+                                || linkedinController.text == ""
+                                || facebookController.text == "") {
                               print("triggered");
                               return;
                             }
