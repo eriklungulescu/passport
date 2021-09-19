@@ -72,6 +72,36 @@ class ContactWidget extends StatelessWidget {
                   ),
                 ],
               )
+          ),RichText(
+              text: TextSpan(
+                children: [
+                  WidgetSpan(
+                      child: Icon(Icons.contacts)
+                  ),
+                  TextSpan(
+                      text: "  " + contact.linkedin,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      )
+                  ),
+                ],
+              )
+          ),RichText(
+              text: TextSpan(
+                children: [
+                  WidgetSpan(
+                      child: Icon(Icons.facebook)
+                  ),
+                  TextSpan(
+                      text: "  " + contact.facebook,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      )
+                  ),
+                ],
+              )
           ),
         ],
       ),

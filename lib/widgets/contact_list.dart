@@ -20,6 +20,7 @@ class _ContactListState extends State<ContactList> {
 
   @override
   Widget build(BuildContext context) {
+
     return Expanded(
           child: ListView.builder(
             controller: ScrollController(),
@@ -30,9 +31,9 @@ class _ContactListState extends State<ContactList> {
               Contact contact = Contact(
                   name: box.getAt(index)!.name,
                   mobile: box.getAt(index)!.mobile,
-                  email:  box.getAt(index)!.email,
-                  linkedin:  box.getAt(index)!.linkedin,
-                  facebook:  box.getAt(index)!.facebook
+                  email: box.getAt(index)!.email,
+                  linkedin: box.getAt(index)!.linkedin,
+                  facebook: box.getAt(index)!.facebook
               );
               return ContactWidget(contact, index, deleteContact);
               },

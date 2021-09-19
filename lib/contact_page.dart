@@ -27,7 +27,7 @@ class _ContactPageState extends State<ContactPage> {
         mobile: contactInfo.elementAt(1),
         email: contactInfo.elementAt(2),
         linkedin: contactInfo.elementAt(3),
-        facebook: contactInfo.elementAt(3),
+        facebook: contactInfo.elementAt(4),
     );
     contacts.add(newContact);
     setState(() {});

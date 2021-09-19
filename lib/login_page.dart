@@ -21,7 +21,8 @@ class _State extends State<LoginPage> {
 
   void storeUserData() {
     userData.put("loggedin", true);
-    if (nameController.text == "" || mobileController.text == "" || emailController.text == "" ) {
+    if (nameController.text == "" || mobileController.text == "" || emailController.text == ""
+        || linkedinController.text == "" || facebookController.text == "") {
 
     }
 
@@ -29,8 +30,8 @@ class _State extends State<LoginPage> {
       name: nameController.text,
       mobile: mobileController.text,
       email: emailController.text,
-      linkedin: emailController.text,
-      facebook: emailController.text
+      linkedin: linkedinController.text,
+      facebook: facebookController.text
 
     );
     userData.put("user", user);
@@ -38,45 +39,62 @@ class _State extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
     Contact contact = userData.get("user");
+
     String name_place;
-    if (contact.name == null){
-      name_place = 'Name';
-    } else {
-      name_place = contact.name;
-      nameController.text = contact.name;
-    }
     String mobile_place;
-    if (contact.mobile == null){
-      mobile_place = 'Phone Number';
-    } else {
-      mobile_place = contact.mobile;
-      mobileController.text = contact.mobile;
-    }
     String email_place;
-    if (contact.email == null){
-      email_place = 'Email';
-    } else {
-      email_place = contact.name;
-      emailController.text = contact.email;
-    }
     String linkedin_place;
-    if (contact.linkedin == null){
-      linkedin_place = 'Linkedin Profile';
-    } else {
-      linkedin_place = contact.linkedin;
-      linkedinController.text = contact.linkedin;
-    }
     String facebook_place;
-    if (contact.facebook == null){
+
+    if (contact == null){
+      name_place = 'Name';
+      mobile_place = 'Phone Number';
+      email_place = 'Email';
+      linkedin_place = 'Linkedin Profile';
       facebook_place = 'Facebook Profile';
     } else {
-      facebook_place = contact.facebook;
-      facebookController.text = contact.facebook;
+      if (contact.name == null){
+        name_place = 'Name';
+      } else {
+        name_place = contact.name;
+        nameController.text = contact.name;
+      }
+
+      if (contact.mobile == null){
+        mobile_place = 'Phone Number';
+      } else {
+        mobile_place = contact.mobile;
+        mobileController.text = contact.mobile;
+      }
+
+      if (contact.email == null){
+        email_place = 'Email';
+      } else {
+        email_place = contact.name;
+        emailController.text = contact.email;
+      }
+
+      if (contact.linkedin == null){
+        linkedin_place = 'Linkedin Profile';
+      } else {
+        linkedin_place = contact.linkedin;
+        linkedinController.text = contact.linkedin;
+      }
+
+      if (contact.facebook == null){
+        facebook_place = 'Facebook Profile';
+      } else {
+        facebook_place = contact.facebook;
+        facebookController.text = contact.facebook;
+      }
+
     }
 
+    print("HERE");
     return Scaffold(
-        body: Padding(
+        body: SingleChildScrollView(
             padding: EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -98,12 +116,12 @@ class _State extends State<LoginPage> {
                   child: TextField(
                     controller: nameController,
                     style: TextStyle(
-                      fontFamily: "LemonMilk"
+                      fontFamily: "RobotoLight"
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      //if
-                      labelText: name_place,
+                      labelText: "Name",
+                      hintText: name_place,
                     ),
                   ),
                 ),
@@ -112,11 +130,12 @@ class _State extends State<LoginPage> {
                   child: TextField(
                     controller: mobileController,
                     style: TextStyle(
-                        fontFamily: "LemonMilk"
+                        fontFamily: "RobotoLight"
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: mobile_place,
+                      labelText: "Phone Number",
+                      hintText: mobile_place,
                     ),
                   ),
                 ),
@@ -125,11 +144,12 @@ class _State extends State<LoginPage> {
                   child: TextField(
                     controller: emailController,
                     style: TextStyle(
-                        fontFamily: "LemonMilk"
+                        fontFamily: "RobotoLight"
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: email_place,
+                      labelText: "Email",
+                      hintText: email_place,
                     ),
                   ),
                 ),
@@ -138,11 +158,12 @@ class _State extends State<LoginPage> {
                   child: TextField(
                     controller: linkedinController,
                     style: TextStyle(
-                        fontFamily: "LemonMilk"
+                        fontFamily: "RobotoLight"
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: linkedin_place,
+                      labelText: "LinkedIn Profile",
+                      hintText: linkedin_place,
                     ),
                   ),
                 ),
@@ -151,11 +172,12 @@ class _State extends State<LoginPage> {
                   child: TextField(
                     controller: facebookController,
                     style: TextStyle(
-                        fontFamily: "LemonMilk"
+                        fontFamily: "RobotoLight"
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: facebook_place,
+                      labelText: "Facebook Profile",
+                      hintText: facebook_place,
                     ),
                   ),
                 ),
