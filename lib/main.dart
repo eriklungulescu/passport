@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
 
   Widget startUp() {
     Box userData = Hive.box("userdata");
-    // Contact user = userData.get("user");
-    if (userData.get("user") != Null) {
+
+    if (userData.get("user") != null) {
+      print("HERE");
       return ContactPage();
     } else {
       return LoginPage();

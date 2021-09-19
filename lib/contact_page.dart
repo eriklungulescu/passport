@@ -44,6 +44,7 @@ class _ContactPageState extends State<ContactPage> {
               Text(
                 "Contacts",
                 style: TextStyle(
+                  fontFamily: "Aquire",
                     fontSize: 40,
                     color: Colors.black
                 ),

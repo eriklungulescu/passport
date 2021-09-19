@@ -15,7 +15,11 @@ class _State extends State<LoginPage> {
   TextEditingController mobileController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
+
+
   Box userData = Hive.box("userdata");
+
+
 
   void storeUserData() {
     userData.put("loggedin", true);
@@ -25,14 +29,38 @@ class _State extends State<LoginPage> {
 
     Contact user = new Contact(
       name: nameController.text,
-      email: emailController.text,
-      mobile: mobileController.text
+      mobile: mobileController.text,
+      email: emailController.text
+
     );
     userData.put("user", user);
   }
 
   @override
   Widget build(BuildContext context) {
+    Contact contact = userData.get("user");
+    String name_place;
+    if (contact.name == null){
+      name_place = 'Name';
+    } else {
+      name_place = contact.name;
+      nameController.text = contact.name;
+    }
+    String mobile_place;
+    if (contact.mobile == null){
+      mobile_place = 'Phone Number';
+    } else {
+      mobile_place = contact.mobile;
+      mobileController.text = contact.mobile;
+    }
+    String email_place;
+    if (contact.email == null){
+      email_place = 'Email';
+    } else {
+      email_place = contact.name;
+      emailController.text = contact.email;
+    }
+
     return Scaffold(
         body: Padding(
             padding: EdgeInsets.all(10),
@@ -60,7 +88,8 @@ class _State extends State<LoginPage> {
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Name',
+                      //if
+                      labelText: name_place,
                     ),
                   ),
                 ),
@@ -73,7 +102,7 @@ class _State extends State<LoginPage> {
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Phone Number',
+                      labelText: mobile_place,
                     ),
                   ),
                 ),
@@ -86,29 +115,49 @@ class _State extends State<LoginPage> {
                     ),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Email',
+                      labelText: email_place,
                     ),
                   ),
                 ),
                 Container(
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                    child: ElevatedButton(
-                      child: Icon(Icons.check_rounded, size: 50),
-                      onPressed: () {
-                        storeUserData();
-                        if (nameController.text == "" || mobileController.text == "" || emailController.text == "" ) {
-                          return;
-                        }
-                        Navigator.pushReplacementNamed(
-                          context,
-                          "contacts"
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
-                        padding: EdgeInsets.all(10),
-                        shape: CircleBorder()
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          child: Icon(Icons.close, size: 50),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context,
+                                "contacts"
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.red,
+                              padding: EdgeInsets.all(10),
+                              shape: CircleBorder()
+                          ),
+                        ),
+                        ElevatedButton(
+                          child: Icon(Icons.check_rounded, size: 50),
+                          onPressed: () {
+                            storeUserData();
+                            if (nameController.text == "" || mobileController.text == "" || emailController.text == "" ) {
+                              print("triggered");
+                              return;
+                            }
+                            Navigator.pushReplacementNamed(
+                                context,
+                                "contacts"
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                              padding: EdgeInsets.all(10),
+                              shape: CircleBorder()
+                          ),
+                        )
+                      ],
                     )
                 ),
               ],
